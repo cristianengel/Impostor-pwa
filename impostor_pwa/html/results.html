@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Impostor - Resultados</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/results-styles.css">
+</head>
+<body>
+    <div class="results-container">
+        <div class="header-section">
+            <h1>¡JUEGO TERMINADO!</h1>
+            <p class="game-complete">Todos los jugadores han visto sus roles</p>
+        </div>
+
+        <div class="results-content">
+            <div class="results-card">
+                <h2>¿Quién era el impostor?</h2>
+                <div class="reveal-section">
+                    <div id="impostorCard" class="impostor-reveal-card">
+                        <div id="impostorName" class="impostor-name">???</div>
+                        <p class="reveal-instruction">Toca para revelar</p>
+                    </div>
+                </div>
+                
+                <div id="gameDetails" class="game-details" style="display: none;">
+                    <div class="detail-item">
+                        <span class="label">El impostor era:</span>
+                        <span id="finalImpostorName" class="value impostor-text"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Jugador famoso:</span>
+                        <span id="finalFamousPlayer" class="value famous-text"></span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="label">Total de jugadores:</span>
+                        <span id="totalPlayers" class="value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button id="newGameBtn" class="btn btn-primary">
+                <span>🎮</span>
+                NUEVA PARTIDA
+            </button>
+        </div>
+    </div>
+
+    <script src="../js/results-main.js"></script>
+</body>
+</html>

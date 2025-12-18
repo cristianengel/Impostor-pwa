@@ -1,0 +1,251 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    background-color: #101720;
+    color: #FBFAF2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 100vh;
+    padding: 20px;
+}
+
+.title-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.player-list-section {
+    flex: 1;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: large;
+}
+
+.empty-message {
+    text-align: center;
+    color: #FBFAF2;
+    opacity: 0.6;
+    font-size: 18px;
+    font-weight: 300;
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+.player-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(251, 250, 242, 0.1);
+    border: 2px solid #FBFAF2;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    transition: all 0.3s ease;
+}
+
+.player-item:hover {
+    background-color: rgba(251, 250, 242, 0.2);
+    border-color: #4CAF50;
+}
+
+.player-name {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.remove-btn {
+    background-color: transparent;
+    color: #ff4444;
+    border: 1px solid #ff4444;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.remove-btn:hover {
+    background-color: #ff4444;
+    color: white;
+    transform: scale(1.1);
+}
+
+.button-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.action-btn {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 15px;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    background-color: #FBFAF2;
+    color: #101720;
+}
+
+#playerDialog {
+    background-color: #101720;
+    border: 2px solid #FBFAF2;
+    border-radius: 15px;
+    padding: 0;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+/* Ajuste para teclado virtual en móviles */
+@media (max-height: 600px) {
+    #playerDialog {
+        top: 20%;
+        transform: translate(-50%, 0);
+        max-height: 70vh;
+    }
+}
+
+#playerDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.dialog-content {
+    padding: 30px;
+    text-align: center;
+}
+
+.dialog-content h3 {
+    color: #FBFAF2;
+    margin: 0 0 20px 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#playerInput {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#playerInput::placeholder {
+    color: #FBFAF2;
+    opacity: 0.7;
+}
+
+#playerInput:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dialog-buttons button {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.dialog-buttons button:hover {
+    background-color: #FBFAF2;
+    color: #101720;
+}
+
+.start-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+.start-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 auto;
+    display: block;
+}
+
+.start-btn:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+    transform: scale(1.05);
+}

@@ -1,0 +1,346 @@
+/* results-styles.css - Estilos para la pantalla de resultados */
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    background-color: #101720;
+    color: #FBFAF2;
+}
+
+.results-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 30px 25px 40px;
+}
+
+.header-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header-section h1 {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+    background: linear-gradient(45deg, #4CAF50, #45a049);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.game-complete {
+    font-size: 16px;
+    font-weight: 300;
+    opacity: 0.8;
+    letter-spacing: 1px;
+}
+
+.results-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.results-card {
+    background-color: transparent;
+    border: 2px solid #FBFAF2;
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.results-card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.reveal-section {
+    margin-bottom: 30px;
+}
+
+.impostor-reveal-card {
+    background-color: transparent;
+    border: 2px solid #ff4444;
+    border-radius: 15px;
+    padding: 30px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.impostor-reveal-card:hover {
+    background-color: rgba(255, 68, 68, 0.1);
+    transform: scale(1.02);
+}
+
+.impostor-reveal-card:active {
+    transform: scale(0.98);
+}
+
+.impostor-name {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: #ff4444;
+    word-break: break-word;
+    line-height: 1.2;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.reveal-instruction {
+    font-size: 14px;
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+.impostor-reveal-card.revealed {
+    background-color: #ff4444;
+    border-color: #ff4444;
+    animation: impostorFinalReveal 0.8s ease-out;
+}
+
+.impostor-reveal-card.revealed .impostor-name,
+.impostor-reveal-card.revealed .reveal-instruction {
+    color: white;
+}
+
+@keyframes impostorFinalReveal {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+    25% { 
+        transform: scale(1.1) rotate(-3deg);
+        box-shadow: 0 0 40px rgba(255, 68, 68, 0.9);
+    }
+    75% { 
+        transform: scale(1.1) rotate(3deg);
+        box-shadow: 0 0 40px rgba(255, 68, 68, 0.9);
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 0 20px rgba(255, 68, 68, 0.7);
+    }
+}
+
+.game-details {
+    margin-top: 20px;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid rgba(251, 250, 242, 0.2);
+    border-radius: 10px;
+    background-color: rgba(251, 250, 242, 0.05);
+    text-align: center;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 18px;
+    font-weight: 600;
+    word-break: break-word;
+    line-height: 1.3;
+}
+
+.impostor-text {
+    color: #ff4444;
+}
+
+.famous-text {
+    color: #4CAF50;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 18px 40px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    min-width: 250px;
+    max-width: 300px;
+}
+
+.btn span {
+    font-size: 20px;
+}
+
+.btn-primary {
+    background-color: #4CAF50;
+    color: white;
+    border: 2px solid #4CAF50;
+}
+
+.btn-primary:hover {
+    background-color: #45a049;
+    border-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(76, 175, 80, 0.4);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsive */
+@media (max-height: 700px) {
+    .results-container {
+        padding: 20px;
+    }
+    
+    .header-section h1 {
+        font-size: 28px;
+    }
+    
+    .results-card h2 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .impostor-reveal-card {
+        padding: 25px 12px;
+        min-height: 140px;
+    }
+    
+    .impostor-name {
+        font-size: 24px;
+        letter-spacing: 0.5px;
+    }
+    
+    .btn {
+        padding: 15px 25px;
+        font-size: 14px;
+    }
+    
+    .value {
+        font-size: 16px;
+    }
+}
+
+@media (max-height: 600px) {
+    .results-container {
+        padding: 15px;
+    }
+    
+    .header-section {
+        margin-bottom: 20px;
+    }
+    
+    .header-section h1 {
+        font-size: 24px;
+    }
+    
+    .results-card {
+        padding: 20px;
+    }
+    
+    .impostor-reveal-card {
+        padding: 20px 10px;
+        min-height: 120px;
+    }
+    
+    .impostor-name {
+        font-size: 20px;
+        letter-spacing: 0px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 13px;
+        min-width: 200px;
+    }
+    
+    .value {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+    .results-container {
+        padding: 15px 20px;
+    }
+    
+    .impostor-reveal-card {
+        padding: 20px 8px;
+        min-height: 100px;
+    }
+    
+    .impostor-name {
+        font-size: 18px;
+        letter-spacing: 0px;
+        line-height: 1.1;
+    }
+    
+    .results-card h2 {
+        font-size: 18px;
+    }
+    
+    .label, .value {
+        font-size: 14px;
+    }
+    
+    .detail-item {
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+}

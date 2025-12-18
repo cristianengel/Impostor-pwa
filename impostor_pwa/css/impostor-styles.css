@@ -1,0 +1,251 @@
+/* impostor-styles.css - Estilos para la pantalla del juego */
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+body {
+    background-color: #101720;
+    color: #FBFAF2;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    padding: 20px 30px 40px;
+}
+
+.top-nav {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
+.back-btn {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 1px solid #FBFAF2;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.back-btn:hover {
+    background-color: rgba(251, 250, 242, 0.1);
+    opacity: 1;
+}
+
+.back-btn:active {
+    transform: scale(0.95);
+}
+
+.header-text {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header-text p {
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.header-text h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.card-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    margin: 40px 0;
+}
+
+.game-card {
+    background-color: transparent;
+    border: 2px solid #FBFAF2;
+    border-radius: 15px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.game-card:hover {
+    border-color: #4CAF50;
+    background-color: rgba(251, 250, 242, 0.05);
+}
+
+.game-card:active {
+    transform: scale(0.98);
+    border-color: #45a049;
+}
+
+#roleInstruction {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.bottom-section {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.next-btn {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.next-btn:hover {
+    background-color: #FBFAF2;
+    color: #101720;
+}
+
+.next-btn:active {
+    transform: scale(0.98);
+}
+
+/* Estilos para estados del juego */
+.game-card.revealed {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    color: white;
+    animation: revealPulse 0.6s ease-out;
+}
+
+.game-card.impostor {
+    background-color: #ff4444;
+    border-color: #ff4444;
+    color: white;
+    animation: impostorReveal 0.8s ease-out;
+}
+
+.game-card.revealed #roleInstruction,
+.game-card.impostor #roleInstruction {
+    color: white;
+    font-size: 24px;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.game-card.impostor #roleInstruction {
+    font-size: 28px;
+    letter-spacing: 3px;
+}
+
+@keyframes revealPulse {
+    0% { 
+        transform: scale(1); 
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+    50% { 
+        transform: scale(1.05); 
+        box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);
+    }
+    100% { 
+        transform: scale(1); 
+        box-shadow: 0 0 0 rgba(76, 175, 80, 0.7);
+    }
+}
+
+@keyframes impostorReveal {
+    0% { 
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+    25% { 
+        transform: scale(1.1) rotate(-2deg);
+        box-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
+    }
+    75% { 
+        transform: scale(1.1) rotate(2deg);
+        box-shadow: 0 0 30px rgba(255, 68, 68, 0.8);
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        box-shadow: 0 0 0 rgba(255, 68, 68, 0.7);
+    }
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-height: 700px) {
+    .game-container {
+        padding: 30px 25px;
+    }
+    
+    .game-card {
+        height: 250px;
+    }
+    
+    .header-text h2 {
+        font-size: 24px;
+    }
+    
+    #roleInstruction {
+        font-size: 16px;
+    }
+}
+
+@media (max-height: 600px) {
+    .game-container {
+        padding: 20px;
+    }
+    
+    .game-card {
+        height: 200px;
+    }
+    
+    .next-btn {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+    
+    #roleInstruction {
+        font-size: 14px;
+    }
+}
