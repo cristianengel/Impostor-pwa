@@ -107,8 +107,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const response = await fetch('../resources/player-data.json');
             const playerData = await response.json();
             
-            // Elegir jugador famoso al azar
-            const randomFamousPlayer = playerData.players[Math.floor(Math.random() * playerData.players.length)];
+            // Obtener jugadores usados del localStorage
+            let usedPlayers = JSON.parse(localStorage.getItem('usedFamousPlayers') || '[]');
+            
+            // Si todos fueron usados, reiniciar la lista
+            if (usedPlayers.length >= playerData.players.length) {
+                usedPlayers = [];
+            }
+            
+            // Filtrar jugadores no usados
+            const availablePlayers = playerData.players.filter(player => 
+                !usedPlayers.some(used => used.name === player.name)
+            );
+            
+            // Elegir jugador famoso al azar de los disponibles
+            const randomFamousPlayer = availablePlayers[Math.floor(Math.random() * availablePlayers.length)];
+            
+            // Agregar a la lista de usados
+            usedPlayers.push(randomFamousPlayer);
+            localStorage.setItem('usedFamousPlayers', JSON.stringify(usedPlayers));
             
             // Elegir impostor al azar de la lista de jugadores
             const randomImpostorIndex = Math.floor(Math.random() * playerNames.length);
