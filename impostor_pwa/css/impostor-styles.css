@@ -24,7 +24,7 @@ body {
     align-items: center;
     width: 100%;
     height: 100vh;
-    padding: 20px 30px 40px;
+    padding: 20px 30px 20px;
 }
 
 .top-nav {
@@ -83,7 +83,7 @@ body {
     align-items: center;
     width: 100%;
     max-width: 400px;
-    margin: 40px 0;
+    margin: 20px 0 10px 0;
 }
 
 .game-card {
@@ -215,7 +215,11 @@ body {
 /* Responsive para pantallas pequeñas */
 @media (max-height: 700px) {
     .game-container {
-        padding: 30px 25px;
+        padding: 15px 25px;
+    }
+    
+    .card-container {
+        margin: 15px 0 5px 0;
     }
     
     .game-card {
@@ -233,7 +237,11 @@ body {
 
 @media (max-height: 600px) {
     .game-container {
-        padding: 20px;
+        padding: 10px 20px;
+    }
+    
+    .card-container {
+        margin: 10px 0 5px 0;
     }
     
     .game-card {

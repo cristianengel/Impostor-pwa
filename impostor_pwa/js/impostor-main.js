@@ -65,7 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isRevealed) return;
         
         isRevealed = true;
-        const currentPlayer = gameData.players[gameData.currentPlayerIndex];
+        const currentPlayer = (gameData.queue && gameData.queue.length)
+            ? gameData.queue[gameData.currentPlayerIndex]
+            : gameData.players[gameData.currentPlayerIndex];
         
         if (currentPlayer === gameData.impostor) {
             // Es el impostor
@@ -91,15 +93,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // Avanzar al siguiente jugador
         gameData.currentPlayerIndex++;
         
-        if (gameData.currentPlayerIndex >= gameData.players.length) {
-            // Terminar el juego
-            endGame();
-            return;
+        // Determinar longitud de la cola (si existe) o usar players
+        const queueLength = (gameData.queue && gameData.queue.length) ? gameData.queue.length : gameData.players.length;
+        if (gameData.currentPlayerIndex >= queueLength) {
+            // Rehacer la cola mezclada para un nuevo ciclo
+            function shuffleArray(arr) {
+                const a = arr.slice();
+                for (let i = a.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [a[i], a[j]] = [a[j], a[i]];
+                }
+                return a;
+            }
+
+            gameData.queue = shuffleArray(gameData.players || []);
+            gameData.currentPlayerIndex = 0;
         }
-        
+
         // Actualizar localStorage con el progreso
         localStorage.setItem('gameData', JSON.stringify(gameData));
-        
+
         // Actualizar la pantalla
         updateCurrentPlayer();
         resetCard();
@@ -115,6 +128,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         try {
             gameData = JSON.parse(savedData);
+
+            // Si no existe la cola, crearla a partir de players y mezclarla
+            if (!gameData.queue || !Array.isArray(gameData.queue) || gameData.queue.length === 0) {
+                function shuffleArray(arr) {
+                    const a = arr.slice();
+                    for (let i = a.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [a[i], a[j]] = [a[j], a[i]];
+                    }
+                    return a;
+                }
+
+                gameData.queue = shuffleArray(gameData.players || []);
+                gameData.currentPlayerIndex = gameData.currentPlayerIndex || 0;
+            }
         } catch (error) {
             console.error('Error al cargar datos del juego:', error);
             alert('Error en los datos del juego. Regresando al inicio.');
@@ -123,13 +151,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function updateCurrentPlayer() {
-        if (!gameData || !gameData.players) return;
-        
-        const currentPlayer = gameData.players[gameData.currentPlayerIndex];
+        if (!gameData || !gameData.queue) return;
+
+        const currentPlayer = gameData.queue[gameData.currentPlayerIndex];
         currentPlayerName.textContent = currentPlayer;
-        
+
         // Actualizar contador
-        const playerCount = `${gameData.currentPlayerIndex + 1}/${gameData.players.length}`;
+        const playerCount = `${gameData.currentPlayerIndex + 1}/${gameData.queue.length}`;
         document.title = `El Impostor - ${playerCount}`;
     }
     
@@ -141,8 +169,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function endGame() {
-        // No limpiar datos aquí, se usarán en la pantalla de resultados
-        // Navegar a la pantalla de resultados
-        window.location.href = 'results.html';
+        // Mantener por compatibilidad: reiniciamos la cola y continuamos.
+        function shuffleArray(arr) {
+            const a = arr.slice();
+            for (let i = a.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [a[i], a[j]] = [a[j], a[i]];
+            }
+            return a;
+        }
+
+        gameData.queue = shuffleArray(gameData.players || []);
+        gameData.currentPlayerIndex = 0;
+        localStorage.setItem('gameData', JSON.stringify(gameData));
+        updateCurrentPlayer();
+        resetCard();
     }
 });
