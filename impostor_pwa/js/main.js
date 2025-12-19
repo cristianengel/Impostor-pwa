@@ -115,22 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const impostor = playerNames[randomImpostorIndex];
             
             // Preparar datos del juego
-            // Creamos una cola (queue) mezclada para garantizar que cada jugador
-            // salga una vez por ciclo y evitar repeticiones dentro de la misma ronda.
-            function shuffleArray(arr) {
-                const a = arr.slice();
-                for (let i = a.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [a[i], a[j]] = [a[j], a[i]];
-                }
-                return a;
-            }
-
-            const queue = shuffleArray(playerNames);
-
             const gameData = {
-                players: playerNames,       // lista original (persistente)
-                queue: queue,               // orden actual (mezclado)
+                players: playerNames,
                 impostor: impostor,
                 famousPlayer: randomFamousPlayer,
                 currentPlayerIndex: 0
