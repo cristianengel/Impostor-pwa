@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Filtrar jugadores no usados
             const availablePlayers = playerData.players.filter(player => 
-                !usedPlayers.some(used => used.name === player.name)
+                !usedPlayers.includes(player)
             );
             
             // Elegir jugador famoso al azar de los disponibles
