@@ -10,6 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const emptyMessage = document.getElementById('emptyMessage');
     const startSection = document.getElementById('startSection');
     const startGameBtn = document.getElementById('startGameBtn');
+    const manualEntryBtn = document.getElementById('manualEntryBtn');
+    const manualDialog = document.getElementById('manualDialog');
+    const manualFamousInput = document.getElementById('manualFamousInput');
+    const manualImpostorSelect = document.getElementById('manualImpostorSelect');
+    const manualConfirmBtn = document.getElementById('manualConfirmBtn');
+    const manualCancelBtn = document.getElementById('manualCancelBtn');
 
     // Cargar jugadores guardados al inicio
     loadSavedPlayers();
@@ -205,4 +211,90 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar estado de la UI
     updateUI();
+
+    // --- Ingreso Manual ---
+
+    function populateImpostorSelect() {
+        // Limpiar opciones existentes
+        manualImpostorSelect.innerHTML = '<option value="" disabled selected>Seleccionar impostor</option>';
+        // Llenar con los jugadores actuales
+        const playerNames = Array.from(playersList.querySelectorAll('.player-name'))
+            .map(player => player.textContent.trim());
+        playerNames.forEach(name => {
+            const option = document.createElement('option');
+            option.value = name;
+            option.textContent = name;
+            manualImpostorSelect.appendChild(option);
+        });
+    }
+
+    function showManualDialog() {
+        populateImpostorSelect();
+        manualFamousInput.value = '';
+        manualDialog.showModal();
+        manualFamousInput.focus();
+    }
+
+    function hideManualDialog() {
+        manualDialog.close();
+        manualFamousInput.value = '';
+        manualImpostorSelect.selectedIndex = 0;
+    }
+
+    manualEntryBtn.addEventListener('click', showManualDialog);
+    manualCancelBtn.addEventListener('click', hideManualDialog);
+
+    // Cerrar dialog manual al hacer clic en el backdrop
+    manualDialog.addEventListener('click', function(e) {
+        if (e.target === manualDialog) {
+            hideManualDialog();
+        }
+    });
+
+    // Enter en el input de jugador famoso → confirmar
+    manualFamousInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            manualConfirmBtn.click();
+        }
+    });
+
+    // Escape para cancelar
+    manualDialog.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hideManualDialog();
+        }
+    });
+
+    manualConfirmBtn.addEventListener('click', function() {
+        const famousPlayer = manualFamousInput.value.trim();
+        const impostor = manualImpostorSelect.value;
+
+        if (!famousPlayer) {
+            alert('Ingresá el nombre del jugador famoso');
+            return;
+        }
+
+        if (!impostor) {
+            alert('Seleccioná quién será el impostor');
+            return;
+        }
+
+        const playerNames = Array.from(playersList.querySelectorAll('.player-name'))
+            .map(player => player.textContent.trim());
+
+        if (playerNames.length < 3) {
+            alert('Necesitas al menos 3 jugadores para comenzar');
+            return;
+        }
+
+        const gameData = {
+            players: playerNames,
+            impostor: impostor,
+            famousPlayer: famousPlayer,
+            currentPlayerIndex: 0
+        };
+
+        localStorage.setItem('gameData', JSON.stringify(gameData));
+        window.location.href = 'impostor.html';
+    });
 });

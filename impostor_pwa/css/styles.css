@@ -249,3 +249,115 @@ ul {
     border-color: #45a049;
     transform: scale(1.05);
 }
+
+/* Botón de ingreso manual */
+.manual-btn {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 15px;
+    padding: 15px 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 10px auto 0;
+    display: block;
+}
+
+.manual-btn:hover {
+    background-color: #FBFAF2;
+    color: #101720;
+    transform: scale(1.05);
+}
+
+/* Modal de ingreso manual */
+#manualDialog {
+    background-color: #101720;
+    border: 2px solid #FBFAF2;
+    border-radius: 15px;
+    padding: 0;
+    max-width: 400px;
+    width: 90%;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+@media (max-height: 600px) {
+    #manualDialog {
+        top: 20%;
+        transform: translate(-50%, 0);
+        max-height: 70vh;
+    }
+}
+
+#manualDialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#manualFamousInput {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#manualFamousInput::placeholder {
+    color: #FBFAF2;
+    opacity: 0.7;
+}
+
+#manualFamousInput:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+#manualImpostorSelect {
+    background-color: transparent;
+    color: #FBFAF2;
+    border: 2px solid #FBFAF2;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3e%3cpath fill='%23FBFAF2' d='M6 8L0 0h12z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+}
+
+#manualImpostorSelect:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+#manualImpostorSelect option {
+    background-color: #101720;
+    color: #FBFAF2;
+}
+
+#manualImpostorSelect option:disabled {
+    opacity: 0.5;
+}

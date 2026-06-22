@@ -34,12 +34,27 @@
             </div>
         </dialog>
 
+        <dialog id="manualDialog">
+            <div class="dialog-content">
+                <h3>Ingreso Manual</h3>
+                <input type="text" id="manualFamousInput" placeholder="Nombre del jugador famoso">
+                <select id="manualImpostorSelect">
+                    <option value="" disabled selected>Seleccionar impostor</option>
+                </select>
+                <div class="dialog-buttons">
+                    <button id="manualConfirmBtn">Comenzar</button>
+                    <button id="manualCancelBtn">Cancelar</button>
+                </div>
+            </div>
+        </dialog>
+
         <div class="button-section">
             <button id="addPlayerBtn" class="action-btn">agregar jugador</button>
         </div>
 
         <div class="start-section" id="startSection" style="display: none;">
             <button id="startGameBtn" class="start-btn">Comenzar Juego</button>
+            <button id="manualEntryBtn" class="manual-btn">Ingreso Manual</button>
         </div>
     </div>
 
