@@ -17,8 +17,13 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Mostrar datos básicos
     if (gameData) {
-        finalImpostorName.textContent = gameData.impostor;
-        finalFamousPlayer.textContent = gameData.famousPlayer;
+        if (gameData.allImpostors) {
+            finalImpostorName.textContent = '¡TODOS!';
+            finalFamousPlayer.textContent = '—';
+        } else {
+            finalImpostorName.textContent = gameData.impostor;
+            finalFamousPlayer.textContent = gameData.famousPlayer;
+        }
         totalPlayers.textContent = gameData.players.length;
     }
     
@@ -57,7 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
         isRevealed = true;
         
         // Actualizar el nombre del impostor en la carta
-        impostorName.textContent = gameData.impostor;
+        if (gameData.allImpostors) {
+            impostorName.textContent = '¡TODOS!';
+        } else {
+            impostorName.textContent = gameData.impostor;
+        }
         
         // Agregar clase de revelado
         impostorCard.classList.add('revealed');

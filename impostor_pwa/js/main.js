@@ -133,6 +133,9 @@ document.addEventListener('DOMContentLoaded', function() {
             usedPlayers.push(randomFamousPlayer);
             localStorage.setItem('usedFamousPlayers', JSON.stringify(usedPlayers));
             
+            // 3% de chance de que todos sean impostores
+            const allImpostors = Math.random() < 0.03;
+            
             // Elegir impostor al azar de la lista de jugadores
             const randomImpostorIndex = Math.floor(Math.random() * playerNames.length);
             const impostor = playerNames[randomImpostorIndex];
@@ -142,7 +145,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 players: playerNames,
                 impostor: impostor,
                 famousPlayer: randomFamousPlayer,
-                currentPlayerIndex: 0
+                currentPlayerIndex: 0,
+                allImpostors: allImpostors
             };
             
             // Guardar en localStorage para pasarlo a la siguiente página

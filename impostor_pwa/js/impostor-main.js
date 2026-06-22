@@ -67,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
         isRevealed = true;
         const currentPlayer = gameData.players[gameData.currentPlayerIndex];
         
-        if (currentPlayer === gameData.impostor) {
-            // Es el impostor
+        if (gameData.allImpostors || currentPlayer === gameData.impostor) {
+            // Es el impostor (o todos son impostores)
             roleInstruction.textContent = 'IMPOSTOR';
             gameCard.classList.add('impostor');
         } else {
